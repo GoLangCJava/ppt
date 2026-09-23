@@ -1,0 +1,330 @@
+title: "China Enterprise Data Platform Solution Proposal"
+author: "BTS Consulting China"
+date: "Sep 2026"
+theme: "consulting_blue"
+aspect_ratio: "16:9"
+
+slides:
+  # 1. Executive Cover Slide
+  - type: cover
+    title: "China RIMS Solution Proposal"
+    subtitle: "企业历史数据标准化归档与智能化治理技术方案建议书"
+    client_tag: "Enterprise Architecture Advisory"
+    author: "BTS Strategy & Architecture Practice"
+    date: "September 2026"
+    dark_mode: true
+
+  # 2. Section Transition
+  - type: section
+    section_num: "01"
+    title: "项目背景与现状资产评估"
+    subtitle: "系统退役现状 · 历史数据资产盘点 · 业务合规诉求"
+    deck_tracker: "China RIMS Solution Proposal"
+    dark_mode: true
+
+  # 3. Status Quo & Strategic Pillars (3-Card Slide)
+  - type: cards
+    tracker: "China RIMS Solution Proposal | Background & Objectives"
+    action_title: "现状分析：多类退役系统沉淀海量异构数据，亟需统一归档治理"
+    lead_note: "历史业务数据是企业核心资产，也是满足监管审计、保障业务连续的关键依据。"
+    takeaway: "Phase 1 先完成数据识别与标准归档，为全量统一查询与合规取证构筑坚实底座。"
+    cards:
+      - title: "存量痛点"
+        badge: "01"
+        subtitle: "数据孤岛与底层存储局限"
+        bullets:
+          - "现有本地 Blob 仅做底层文件存储，缺乏标准化归档元数据与全局索引"
+          - "历史系统分散在不同机房与云环境，访问接口停运且缺乏统一入口"
+          - "数据库版本老旧，长期面临运维安全与补丁合规隐患"
+        tags: ["架构分散", "运维风险", "无统一入口"]
+        highlight: false
+
+      - title: "资产价值"
+        badge: "02"
+        subtitle: "企业核心资产沉淀与赋能"
+        bullets:
+          - "沉淀业务全量历史记录，覆盖客户、订单、费用、追溯与活动数据"
+          - "支撑下游经营分析、策略复盘与历史趋势对比"
+          - "为未来引入 AI 智能检索与合规辅助挖掘提供高质量语料数据"
+        tags: ["数据资产", "商业复盘", "AI准备度"]
+        highlight: true
+
+      - title: "合规刚需"
+        badge: "03"
+        subtitle: "行业强监管与审计举证要求"
+        bullets:
+          - "药监 NMPA 及行业监管对历史记录与电子签名有严格保留期限要求"
+          - "应对突发外部稽核时，需在 2 小时内快速调阅不可篡改原始证据链"
+          - "需具备完整的 WORM 防篡改与到期自动销毁合规闭环举证能力"
+        tags: ["NMPA合规", "防篡改", "快速举证"]
+        highlight: false
+
+  # 4. KPI Status Summary (4 Metrics Cards)
+  - type: kpis
+    tracker: "China RIMS Solution Proposal | Asset Inventory"
+    action_title: "资产盘点：迁移范围清晰，分类施策以提升治理与交付效能"
+    lead_note: "针对不同系统生命周期状态与数据结构完整度，实施分层分阶段归集路径。"
+    takeaway: "按准备度分级启动：已具备结构系统先行，缺失元数据系统启动结构扫描与逆向工程。"
+    kpis:
+      - value: "19 个"
+        label: "已退役业务系统"
+        description: "涵盖早期 CRM、费用审批与活动营销系统，结构已固定，优先完成归档入库"
+        tag: "Phase 1 先行"
+        highlight: true
+
+      - value: "7 个"
+        label: "待退役待归档系统"
+        description: "运行中但已进入下线排期，需同步冻结增量数据并制定平滑切换割接预案"
+        tag: "Phase 2 承接"
+        highlight: false
+
+      - value: "4 个"
+        label: "现存需持续抽数系统"
+        description: "高频交易与供应链系统，需建立增量同步常态化机制与准实时数据抽取"
+        tag: "Phase 3 扩展"
+        highlight: false
+
+      - value: "~40%"
+        label: "预期实施成本节约"
+        description: "通过配置化平台与 AI 辅助工程方法，相较传统定制交付大幅压缩总体人天投入"
+        tag: "ROI 提升"
+        highlight: true
+
+  # 5. Section Transition
+  - type: section
+    section_num: "02"
+    title: "技术方案选型与推荐架构"
+    subtitle: "候选方案多维对比 · 推荐方案四层架构视图 · 核心设计原则"
+    deck_tracker: "China RIMS Solution Proposal"
+    dark_mode: true
+
+  # 6. Architecture Comparison Matrix
+  - type: comparison
+    tracker: "China RIMS Solution Proposal | Architecture Evaluation"
+    action_title: "方案对比与选型：湖仓一体 + Databricks 兼具全量可用性与长效弹性"
+    lead_note: "基于业务需求、合规监管、运维复杂度与长期成本五大维度，对三种候选方案进行量化评估。"
+    options:
+      - name: "方案 A"
+        subtitle: "PG + Appsmith 低代码"
+        is_recommended: false
+      - name: "方案 B1"
+        subtitle: "湖仓 + Trino 开放方案"
+        is_recommended: false
+      - name: "方案 B2"
+        subtitle: "湖仓 + Databricks 平台化"
+        is_recommended: true
+    rows:
+      - index: "01"
+        title: "业务能力与数据可用性"
+        description: "是否完整承接历史数据，支持跨系统关联与高效联邦查询"
+        cells:
+          - score_symbol: "▲"
+            verdict: "存在明显局限"
+            bullets:
+              - "仅约 10% 高频表进入关系库"
+              - "冷数据仅文件存储，不可 SQL 检索"
+              - "不支持跨系统联邦分析"
+          - score_symbol: "●"
+            verdict: "能力较强"
+            bullets:
+              - "历史数据全量入湖，100% 可 SQL 查询"
+              - "Trino 提供统一标准 SQL 接入"
+              - "复杂多表关联需精细调优"
+          - score_symbol: "●"
+            verdict: "优势明显"
+            bullets:
+              - "全量入湖，100% 支持极速 SQL"
+              - "跨系统联邦查询原生支持"
+              - "自带智能查询缓存与矢量化加速"
+
+      - index: "02"
+        title: "安全、治理与审计合规"
+        description: "细粒度访问控制、行/列级脱敏、销毁举证与审计日志闭环"
+        cells:
+          - score_symbol: "▲"
+            verdict: "能力分散需自建"
+            bullets:
+              - "加密字段无法有效建立索引检索"
+              - "审计需拼接多套独立日志"
+              - "脱敏规则与应用层强耦合"
+          - score_symbol: "▲"
+            verdict: "核心合规需自研"
+            bullets:
+              - "Trino 需自建鉴权拦截插件"
+              - "列级脱敏需维护多套视图"
+              - "全生命周期血缘跟踪较弱"
+          - score_symbol: "●"
+            verdict: "企业级合规闭环"
+            bullets:
+              - "Unity Catalog 原生支持表/行/列级权限"
+              - "无感列级动态脱敏与掩码策略"
+              - "防篡改审计日志与销毁溯源存证"
+
+      - index: "03"
+        title: "性能与高弹性扩展"
+        description: "高并发审计调阅响应，PB 级容量平滑扩容能力"
+        cells:
+          - score_symbol: "▲"
+            verdict: "单机容量天花板"
+            bullets:
+              - "PG 单实例容量建议不超过 15-20TB"
+              - "历史大表 VACUUM 维护代价高"
+              - "突发高并发查询容易阻塞"
+          - score_symbol: "●"
+            verdict: "分布式 MPP 计算"
+            bullets:
+              - "存算分离架构，支持 PB 级规模"
+              - "但需团队自维护集群伸缩调度"
+              - "空闲期间存在固定计算节点开销"
+          - score_symbol: "●"
+            verdict: "Serverless 弹性归零"
+            bullets:
+              - "Databricks Serverless 弹性并行计算"
+              - "按需极速拉起，空闲自动缩容至零"
+              - "无需维护底层集群基础设施"
+
+      - index: "04"
+        title: "实施与运维复杂度"
+        description: "初始建设工作量与后续接入新系统的边际维护成本"
+        cells:
+          - score_symbol: "●"
+            verdict: "首期快但边际成本高"
+            bullets:
+              - "拖拽建页首期最快上线"
+              - "每接入一个新系统需重复人工开发"
+              - "长期 DBA 维护负担持续递增"
+          - score_symbol: "▲"
+            verdict: "自建运维复杂度极高"
+            bullets:
+              - "需运维自建 Trino 高可用集群"
+              - "自研前端、权限及审计全套中间件"
+              - "版本升级与 Bug 修复风险自负"
+          - score_symbol: "●"
+            verdict: "配置化复用边际成本趋零"
+            bullets:
+              - "核心服务全托管，运维省心"
+              - "元数据驱动配置化界面，新系统零代码接入"
+              - "平台规模越大，单系统分摊成本越低"
+    takeaway:
+      recommended_title: "推荐选型：方案 B2（湖仓一体 + Databricks）"
+      recommended_text: "在 15+ 系统 / 20TB / 3年规划基线下，方案 B2 在数据全量可用性、原生安全治理与 Serverless 弹性方面优势显著，具备最佳综合 TCO。"
+      tradeoff_title: "关键取舍 (Trade-off)"
+      tradeoff_text: "治理能力强依赖 Databricks Unity Catalog，但底层数据坚持开放 Iceberg 格式，保留未来无缝解耦与平滑迁移能力。"
+
+  # 7. Architecture 4-Layer Blueprint
+  - type: architecture
+    tracker: "China RIMS Solution Proposal | Architecture Blueprint"
+    action_title: "推荐架构：方案 B2 四层解耦架构设计视图"
+    lead_note: "分层解耦架构：统一表现层与业务服务层承接用户需求，Databricks + Iceberg 构建可扩展可治理的数据与存储底座。"
+    takeaway: "全链路零信任安全体系：前后端分离、私有端点互联、托管标识免密通信，彻底阻断明文凭据泄漏风险。"
+    layers:
+      - layer_num: "01"
+        name: "表现层"
+        sub_en: "Interface Layer"
+        protocol_connector: "HTTPS 443 · REST / JSON · JWT Bearer Token"
+        modules:
+          - title: "配置化查询平台 (React)"
+            description: "按元数据动态渲染查询表单、结果表格与明细页，无需逐系统单独开发页面"
+          - title: "附件安全预览 / 下载"
+            description: "后端签发带时效的短效 SAS 令牌，前端直连 Blob 实现流式预览与加密下载"
+          - title: "报表生成与审计导出"
+            description: "查询结果脱敏导出 CSV/Excel，加盖数字水印，专供审计稽核与离线调阅"
+          - title: "统一身份认证 (Entra ID)"
+            description: "企业级 OIDC 单点登录，基于 RBAC 角色动态判定可访问的业务系统与数据表范围"
+
+      - layer_num: "02"
+        name: "业务服务层"
+        sub_en: "Service Layer"
+        protocol_connector: "私有端点 (Private Endpoint) · 托管标识免密访问"
+        modules:
+          - title: "认证与权限拦截网关"
+            description: "校验 JWT，基于“用户→系统→表”元数据矩阵动态判定可访问范围与行级过滤条件"
+          - title: "全局元数据管理中枢"
+            description: "统一管理系统台账、源库表结构、字段脱敏映射、保留周期策略与归档记录"
+          - title: "查询代理与 SQL 防护"
+            description: "智能拼装并校验 SQL（白名单校验、防注入、超时截断），结果集裁剪与动态掩码"
+          - title: "生命周期与合规销毁"
+            description: "定期扫描到期数据，发起多级审批流，触发安全物理擦除作业并回写防篡改台账"
+
+      - layer_num: "03"
+        name: "数据访问层"
+        sub_en: "Data Access Layer"
+        protocol_connector: "ABFS 驱动 · JDBC / ODBC · Unity Catalog 托管鉴权"
+        modules:
+          - title: "多源数据编排与抽取"
+            description: "Azure Data Factory 定时编排；Apache SeaTunnel 抽取 200+ 多源异构数据写入湖仓"
+          - title: "弹性处理与计算引擎"
+            description: "Databricks Serverless SQL Warehouse，毫秒级冷启动，支持突发高并发审计检索"
+          - title: "统一安全治理中枢"
+            description: "Unity Catalog 原生提供细粒度表/行/列级授权、动态列脱敏、端到端血缘与合规审计"
+          - title: "企业级密钥保护系统"
+            description: "Azure Key Vault 集中管理主密钥，支持信封加密与传输链路硬件级全密态防护"
+
+      - layer_num: "04"
+        name: "存储层"
+        sub_en: "Storage Layer"
+        modules:
+          - title: "结构化历史湖仓"
+            description: "ADLS Gen2 + Apache Iceberg 开放表格式分层存储（Raw → Curated），支持 PB 级扩展"
+          - title: "非结构化文件附件"
+            description: "Azure Blob 存储各类电子合同、发票与图片，支持冷热分层、生命周期归档与 WORM 防篡改"
+          - title: "平台元数据关系库"
+            description: "Azure SQL 托管数据库，存储 35+ 张配置表、系统台账、字段映射字典与系统审计流水"
+          - title: "运维可观测性系统"
+            description: "App Insights + Azure Monitor 全面采集调用链、性能指标、慢查询与安全告警"
+
+  # 8. Implementation Roadmap & Timeline
+  - type: roadmap
+    tracker: "China RIMS Solution Proposal | Implementation & Roadmap"
+    action_title: "实施路线图与交付效率：12 周分步上线，规范驱动提效 40%"
+    lead_note: "基于 SDD 规范驱动开发与 AI 赋能工作流，前置需求与架构投入，大幅压缩后期编码与联调返工代价。"
+    traditional_effort: "320 人天 (传统 SLC 交付)"
+    ai_effort: "195 人天 (AI 赋能 + 规范驱动)"
+    summary_text: "AI 赋能叠加 Phase 1 非核心功能后置裁剪，保障前置需求架构投入，实现整体人天大幅压缩。"
+    metrics:
+      - big_stat: "125 人天"
+        sub_label: "~40% 交付工期与人天净节省"
+      - big_stat: "12 周"
+        sub_label: "约 3 个月完成 Phase 1 投产上线"
+      - big_stat: "3-4 人"
+        sub_label: "精益核心交付团队 (架构+全栈+业务)"
+    phases:
+      - phase_id: "STEP 1+2"
+        duration_weeks: "2 周"
+        title: "需求澄清与架构设计"
+        tasks:
+          - "全量系统字段台账梳理与范围冻结"
+          - "四层技术架构与模块详细接口设计"
+          - "安全合规与脱敏策略基线评审"
+        exit_criteria: "设计评审通过 + 接口规范冻结"
+        is_critical: false
+
+      - phase_id: "STEP 3+4"
+        duration_weeks: "6 周"
+        title: "平台骨架与核心功能开发"
+        tasks:
+          - "湖仓数据底座搭建与 SeaTunnel 管道调通"
+          - "配置化查询界面与动态表格生成引擎"
+          - "Unity Catalog 权限体系与审计服务集成"
+        exit_criteria: "P0/P1 功能冒烟测试全部通过"
+        is_critical: true
+
+      - phase_id: "STEP 5"
+        duration_weeks: "3 周"
+        title: "样本系统迁移与全量集成测试"
+        tasks:
+          - "以首批 CC 系统为基准开展数据迁移演练"
+          - "端到端业务查询链路与下载压测验证"
+          - "业务关键用户开展 UAT 验收与签字"
+        exit_criteria: "业务方 UAT 签字确认无阻塞缺陷"
+        is_critical: false
+
+      - phase_id: "STEP 6"
+        duration_weeks: "1 周"
+        title: "生产发布与平滑割接"
+        tasks:
+          - "生产环境组件同构部署与网络策略放行"
+          - "全量历史数据校验核对 (SHA-256)"
+          - "上线投产、用户赋能培训与平稳运维交接"
+        exit_criteria: "生产环境验证通过，平稳进入维保"
+        is_critical: false
