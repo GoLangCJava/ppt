@@ -1,0 +1,353 @@
+title: "Azure Modern Data Platform Architecture (ADF + Databricks + Synapse)"
+author: "Cloud Data Architecture Advisory"
+date: "Sep 2026"
+theme: "consulting_blue"
+aspect_ratio: "16:9"
+
+slides:
+  # Slide 1: Cover Slide
+  - type: cover
+    title: "Azure Modern Data Architecture"
+    subtitle: "基于 Azure Databricks、ADF 与 Synapse 的现代化湖仓协同架构建议书"
+    client_tag: "Enterprise Cloud Data Platform Strategy"
+    author: "Enterprise Cloud Architecture Practice"
+    date: "September 2026"
+    dark_mode: true
+
+  # Slide 2: Strategic Role Division (3-Card Slide)
+  - type: cards
+    tracker: "Azure Data Platform Strategy | Core Roles & Positioning"
+    action_title: "战略定位：ADF、Databricks 与 Synapse 各司其职，形成现代化协同数据底座"
+    lead_note: "明确三者在企业数据价值链中的专业分工，打破重复建设与选型困惑，发挥各组件最佳能效。"
+    takeaway: "架构黄金准则：以 ADF 为全域编排纽带，以 Databricks 为湖仓计算核心，以 Synapse 为企业级分析与报表消费窗口。"
+    cards:
+      - title: "Azure Data Factory (ADF)"
+        badge: "01"
+        subtitle: "全域数据集成与调度编排中枢"
+        bullets:
+          - "全域连接能力：内置 100+ 原生连接器，覆盖本地多机房、第三方云与 SaaS 应用"
+          - "Serverless 弹性调度：事件触发、时间轮询与动态参数化管道控制"
+          - "安全混合网络：自托管集成运行时 (SHIR)，打通专线、VNet 与私有端点 (Private Endpoint)"
+        tags: ["数据抽取", "多源编排", "混合网络"]
+        highlight: false
+
+      - title: "Azure Databricks"
+        badge: "02"
+        subtitle: "现代化湖仓一体与智能计算核心"
+        bullets:
+          - "Medallion 奖章架构：驱动 Bronze 原始层 -> Silver 清洗层 -> Gold 业务层的精炼流转"
+          - "极致大数据性能：Photon 向量化执行引擎 + Delta Lake ACID 事务保障"
+          - "统一数据智能：Unity Catalog 统一数据治理，集成 MLflow 提供端到端 AI/ML 赋能"
+        tags: ["Delta Lake", "Spark计算", "AI/ML赋能"]
+        highlight: true
+
+      - title: "Azure Synapse Analytics"
+        badge: "03"
+        subtitle: "企业级数仓与高性能 BI 报表服务"
+        bullets:
+          - "专用 SQL 池 (Dedicated)：MPP 大规模并行处理，承载核心企业数据仓库与复杂主题集市"
+          - "无服务器即席查询 (Serverless)：按查询数据量计费，分钟级轻量探索数据湖"
+          - "无缝消费体验：与 Power BI 深度集成，支持大规模高并发决策报表秒级响应"
+        tags: ["企业数仓", "MPP架构", "BI无缝连接"]
+        highlight: false
+
+  # Slide 3: Architecture Blueprint (4-Layer N-Tier View)
+  - type: architecture
+    tracker: "Azure Data Platform Architecture | End-to-End Blueprint"
+    action_title: "技术蓝图：基于 Medallion 奖章体系的 Azure 四层现代化数据架构"
+    lead_note: "分层解耦架构：统一数据接入、湖仓精炼、数仓建模与业务消费，构建全链路可治理的云上数据底座。"
+    takeaway: "端到端安全基线：全链路托管标识 (Managed Identity) 免密互通，Unity Catalog 与 Purview 实现表/行/列级权限及全生命周期血缘跟踪。"
+    layers:
+      - layer_num: "01"
+        name: "消费与洞察层"
+        sub_en: "Consumption Layer"
+        protocol_connector: "HTTPS 443 · DirectQuery / Import · REST APIs · DirectLake"
+        modules:
+          - title: "Power BI 敏捷可视化"
+            description: "直连 Synapse 与 Databricks SQL，提供秒级响应的经营管理大屏与自助探索"
+          - title: "企业级报表与仪表盘"
+            description: "定期生成合规财务报表、运营日报与多维度钻取报表，支持邮件订阅与导出"
+          - title: "机器学习与 AI 应用"
+            description: "基于 Azure OpenAI 与 MLflow 模型服务，提供智能预测、自然语言取数与分类推荐"
+          - title: "第三方应用与开放 API"
+            description: "通过 Azure API Management 统一对外暴露标准微服务接口与逆向 ETL (Reverse ETL)"
+
+      - layer_num: "02"
+        name: "建模与服务层"
+        sub_en: "Serving & Modeling Layer"
+        protocol_connector: "Synapse Link · JDBC / ODBC · T-SQL · Delta Sharing"
+        modules:
+          - title: "Synapse 专用 SQL 池"
+            description: "MPP 大规模分布式架构，存储企业标准化维度模型 (Kimball 事实表与星型维度表)"
+          - title: "Synapse Serverless SQL"
+            description: "针对 ADLS Gen2 开放文件直接执行原生 T-SQL，零驻留成本即席查询"
+          - title: "Databricks SQL 仓库"
+            description: "Serverless SQL Warehouse，提供高并发湖仓查询与指标语义层定义"
+          - title: "统一元数据治理 (Purview)"
+            description: "跨 ADF、Databricks 与 Synapse 的全局数据目录、敏感数据分类与自动血缘追踪"
+
+      - layer_num: "03"
+        name: "湖仓精炼与计算层"
+        sub_en: "Lakehouse Processing Layer"
+        protocol_connector: "ABFS 驱动 · Delta Lake 格式 · Apache Spark 3.x · Auto Loader"
+        modules:
+          - title: "Bronze 原始湖 (Raw)"
+            description: "保留源端原始快照与增量文件，结合 Auto Loader 实现云上毫秒级增量接入"
+          - title: "Silver 清洗层 (Refined)"
+            description: "执行数据清洗、去重、类型推断、Schema 校验与业务实体关联 (Delta 表)"
+          - title: "Gold 业务层 (Aggregated)"
+            description: "高度精炼的主题汇总、指标沉淀与特征工程，支持 ACID 事务与时间旅行"
+          - title: "Unity Catalog 统一中枢"
+            description: "表级/行级/列级统一权限控制，动态敏感字段脱敏与跨平台 Delta Sharing 共享"
+
+      - layer_num: "04"
+        name: "接入与基础设施层"
+        sub_en: "Ingestion & Infrastructure"
+        modules:
+          - title: "Azure Data Factory (ADF)"
+            description: "全域统一调度编排流水线，支持批量定时抽取与依赖管理，调度 Databricks 笔记本"
+          - title: "实时流式接入 (Event Hubs)"
+            description: "高吞吐接入 IoT 设备、应用埋点与 Kafka 实时消息流，支持微批流式写入"
+          - title: "ADLS Gen2 湖底座"
+            description: "高性价比分层对象存储 (Hot/Cool/Archive)，多协议兼容与私有端点网络隔离"
+          - title: "企业级安全 (Key Vault)"
+            description: "统一密钥、证书与数据库连接字符串管理，杜绝凭证硬编码风险"
+
+  # Slide 4: Multi-dimensional Scenario Comparison (Comparison Matrix)
+  - type: comparison
+    tracker: "Azure Data Platform Strategy | Technology Evaluation"
+    action_title: "场景选型比选：在数据接入、复杂转换、湖仓治理与 BI 报表场景下的边界权衡"
+    lead_note: "基于企业实际技术诉求，量化评估 ADF、Databricks 与 Synapse 在五大典型业务场景下的适配度与核心优势。"
+    options:
+      - name: "Azure Data Factory"
+        subtitle: "编排与多源连接器"
+        is_recommended: false
+      - name: "Azure Databricks"
+        subtitle: "现代化湖仓与计算核心"
+        is_recommended: true
+      - name: "Azure Synapse"
+        subtitle: "企业级数仓与报表服务"
+        is_recommended: false
+    rows:
+      - index: "01"
+        title: "异构多源抽取与调度编排"
+        description: "混合云多源适配、连接器生态、定时轮询与事件依赖编排能力"
+        cells:
+          - score_symbol: "●"
+            verdict: "业界顶级编排枢纽"
+            bullets:
+              - "内置 100+ 原生成熟连接器"
+              - "图形化零代码流水线编排"
+              - "自托管运行时打通复杂内网"
+          - score_symbol: "▲"
+            verdict: "支持但非调度专长"
+            bullets:
+              - "Databricks Workflows 支持轻量调度"
+              - "外部异构数据源连接需自写代码"
+              - "混合云内网穿透能力较弱"
+          - score_symbol: "●"
+            verdict: "继承 ADF 管道能力"
+            bullets:
+              - "Synapse Pipelines 具备与 ADF 一致能力"
+              - "支持一体化编排内部计算作业"
+              - "跨多云连接建议由专职团队维护"
+
+      - index: "02"
+        title: "大数据清洗与复杂转换 (ETL/ELT)"
+        description: "TB/PB 级大数据吞吐性能、复杂业务逻辑处理、非结构化数据处理"
+        cells:
+          - score_symbol: "▲"
+            verdict: "仅适合轻量转换"
+            bullets:
+              - "Data Flow 学习曲线较高"
+              - "大规模复杂清洗执行成本较高"
+              - "更适合 ELT 中的轻量搬运"
+          - score_symbol: "●"
+            verdict: "业界公认性能霸主"
+            bullets:
+              - "Photon 向量化引擎极速提效 3-5x"
+              - "PySpark / Scala 灵活表达复杂逻辑"
+              - "强大非结构化与半结构化处理能力"
+          - score_symbol: "▲"
+            verdict: "适合 T-SQL 结构化转换"
+            bullets:
+              - "基于 SQL 存储过程完成库内转换"
+              - "非结构化与复杂算法支持受限"
+              - "Spark 集群启动延迟相对较高"
+
+      - index: "03"
+        title: "湖仓一体 (Lakehouse) 与流批统一"
+        description: "ACID 事务、历史版本回溯 (Time Travel)、流批一体处理与开放格式"
+        cells:
+          - score_symbol: "○"
+            verdict: "不具备湖仓存储能力"
+            bullets:
+              - "仅作为数据移动管道"
+              - "不参与底层存储格式优化"
+              - "需配合计算引擎维护数据质量"
+          - score_symbol: "●"
+            verdict: "Delta Lake 原创引领者"
+            bullets:
+              - "原生 Delta Lake / Iceberg 支持"
+              - "Auto Loader 毫秒级增量流式入湖"
+              - "全套时间旅行与数据版本秒级回滚"
+          - score_symbol: "▲"
+            verdict: "支持部分 Delta 特性"
+            bullets:
+              - "Serverless SQL 支持读取 Delta"
+              - "流式实时处理功能较弱"
+              - "湖仓底层高级优化依赖手动操作"
+
+      - index: "04"
+        title: "高并发 BI 即席查询与企业数仓 (EDW)"
+        description: "数千分析师高并发并发、复杂维度建模、亚秒级报表响应"
+        cells:
+          - score_symbol: "○"
+            verdict: "不提供查询服务"
+            bullets:
+              - "无查询接口与 SQL 执行能力"
+              - "仅输出文件至下游数据库"
+              - "不参与报表交互层"
+          - score_symbol: "▲"
+            verdict: "Databricks SQL 持续提升"
+            bullets:
+              - "Serverless SQL 提供优秀性价比"
+              - "但极高并发（几千人同时点选）开销大"
+              - "适合探索性分析与中型报表"
+          - score_symbol: "●"
+            verdict: "企业级数仓绝对主力"
+            bullets:
+              - "专用 SQL 池 MPP 并发抗压能力极强"
+              - "成熟物化视图与结果集缓存机制"
+              - "深度结合 Power BI 提供秒级聚合"
+
+      - index: "05"
+        title: "AI / 机器学习与高级分析"
+        description: "算法模型训练、特征工程、端到端 MLOps 与大语言模型对接"
+        cells:
+          - score_symbol: "○"
+            verdict: "不支持 AI/ML 任务"
+            bullets:
+              - "仅为算法训练搬运样本文件"
+              - "无算法环境与 GPU 计算能力"
+              - "模型生命周期不参与"
+          - score_symbol: "●"
+            verdict: "一站式 AI/ML 数据智能底座"
+            bullets:
+              - "原生集成 MLflow 模型注册与部署"
+              - "内置 GPU 加速集群与常见 AI 依赖"
+              - "无缝承接企业私域知识库与 LLM 微调"
+          - score_symbol: "▲"
+            verdict: "支持基础内置算法"
+            bullets:
+              - "集成 Azure ML 具备轻量预测能力"
+              - "生态成熟度与开发者偏好低于 Databricks"
+              - "前沿深度学习需要额外配置"
+    takeaway:
+      recommended_title: "协同组合黄金建议：三位一体 (ADF + Databricks + Synapse)"
+      recommended_text: "绝非三选一的非此即彼，而是三位一体：ADF 承担全域多源接入，Databricks 承担湖仓 Medallion 流批处理与 AI，Synapse 承载企业数仓建模与高并发 BI。"
+      tradeoff_title: "关键取舍 (Trade-off)"
+      tradeoff_text: "若团队规模极小且仅有传统 SQL 人员，可先以 ADF + Synapse 起步；当引入非结构化数据、AI/ML 或流式实时计算时，必须引入 Databricks。"
+
+  # Slide 5: End-to-End Pipeline Workflow (4 Stages Cards)
+  - type: cards
+    tracker: "Azure Data Platform Implementation | Data Lifecycle"
+    action_title: "端到端数据流水线：从源端抽取到分析服务的 4 阶段标准化落地闭环"
+    lead_note: "构建清晰的数据流转链路与职责交接面，确保数据从原始状态到商业洞察的高效可靠交付。"
+    takeaway: "运行效率收益：端到端增量同步控制在 15 分钟以内，相较传统日级批处理大幅提升业务敏捷度与实时感知力。"
+    cards:
+      - title: "Stage 1: 统一抽取与落地"
+        badge: "01"
+        subtitle: "Raw Data Ingestion"
+        bullets:
+          - "ADF 触发增量抓取：按水印字段 (Watermark) 轮询源库，抽取变动增量"
+          - "落地 ADLS Gen2：写入 Bronze 存储桶，严格按日期时间分区归档"
+          - "元数据登记：写入抽取流水日志，记录行数、校验和与耗时"
+        tags: ["ADF编排", "增量抓取", "文件落地"]
+        highlight: false
+
+      - title: "Stage 2: 湖仓精炼与清洗"
+        badge: "02"
+        subtitle: "Bronze to Silver Refinement"
+        bullets:
+          - "Auto Loader 自动感应：无需扫描全目录，事件驱动即时感知新文件入湖"
+          - "Delta 表写入：执行类型转换、去重、Schema 演进验证与异常数据分流"
+          - "数据质量核验：定义 Great Expectations 规则，保证 Silver 洁净度"
+        tags: ["Databricks", "Auto Loader", "数据清洗"]
+        highlight: true
+
+      - title: "Stage 3: 聚合建模与特征加工"
+        badge: "03"
+        subtitle: "Silver to Gold Aggregation"
+        bullets:
+          - "主题宽表构建：基于业务逻辑组装客户全景、订单明细与产品主数据"
+          - "指标统一定义：统一口径计算 GMV、毛利、复购率等关键经营指标"
+          - "特征工程沉淀：为推荐算法与风控模型输出高质量特征特征库"
+        tags: ["主题建模", "指标沉淀", "Delta Lake"]
+        highlight: false
+
+      - title: "Stage 4: 高并发服务与报表交付"
+        badge: "04"
+        subtitle: "Serving & BI Delivery"
+        bullets:
+          - "推送到 Synapse：通过 PolyBase / COPY 命令高速写入专用 SQL 池"
+          - "语义模型构建：在 Power BI 中建立星型模式，启用 DirectLake 极速直连"
+          - "分级缓存加速：启用物化视图与结果集缓存，保障千人并发无卡顿"
+        tags: ["Synapse专用池", "Power BI", "秒级响应"]
+        highlight: false
+
+  # Slide 6: Delivery Roadmap & Implementation Timeline (Roadmap Slide)
+  - type: roadmap
+    tracker: "Azure Data Platform Implementation | Project Roadmap"
+    action_title: "实施路线图：10 周搭建高弹性、高治理能力的现代化 Azure 湖仓平台"
+    lead_note: "遵循敏捷迭代与规范驱动开发原则，前置架构与治理基线，分四阶段稳步实现生产级投产与价值验证。"
+    traditional_effort: "240 人天 (传统定制集成模式)"
+    ai_effort: "145 人天 (现代化协同架构 + 规范驱动)"
+    summary_text: "标准化四层架构避免后期返工与组件重复建设，全链路托管服务将交付周期由 5 个月压缩至 2.5 个月。"
+    metrics:
+      - big_stat: "95 人天"
+        sub_label: "~40% 交付人力与成本节省"
+      - big_stat: "10 周"
+        sub_label: "约 2.5 个月完成全平台投产"
+      - big_stat: "3-4 人"
+        sub_label: "精益核心团队配置 (云架构+数仓+BI)"
+    phases:
+      - phase_id: "PHASE 1"
+        duration_weeks: "2 周"
+        title: "云基础设施与安全基线搭建"
+        tasks:
+          - "Azure 租户订阅划分、虚拟网络 (VNet) 与私有端点 (Private Endpoints) 规划"
+          - "部署 ADF、Databricks 工作区与 Synapse 工作区，打通 Key Vault 统一凭据"
+          - "Unity Catalog 与 ADLS Gen2 存储挂载，配置 Entra ID RBAC 权限体系"
+        exit_criteria: "基础设施自动化部署通过，安全基线评审无阻断缺陷"
+        is_critical: false
+
+      - phase_id: "PHASE 2"
+        duration_weeks: "4 周"
+        title: "核心管道开发与湖仓精炼搭建"
+        tasks:
+          - "基于 ADF 搭建首批核心源业务系统抽取流水线 (按小时/天级调度)"
+          - "编写 Databricks Auto Loader 与 Delta Lake Bronze/Silver 精炼作业"
+          - "建立数据质量校验规则库与监控告警机制"
+        exit_criteria: "首批核心系统端到端冒烟测试全部通过，清洗吞吐达标"
+        is_critical: true
+
+      - phase_id: "PHASE 3"
+        duration_weeks: "3 周"
+        title: "数仓模型构建与 Power BI 报表集成"
+        tasks:
+          - "在 Synapse 专用 SQL 池中建立星型模型 (Fact & Dimension Tables)"
+          - "调优 PolyBase 高速同步链路，实现 Gold 层到 Synapse 快速分发"
+          - "在 Power BI 中完成核心管理仪表盘搭建与 DirectLake 性能压测"
+        exit_criteria: "关键业务用户开展 UAT 验收并签署确认书"
+        is_critical: false
+
+      - phase_id: "PHASE 4"
+        duration_weeks: "1 周"
+        title: "生产环境发布与割接运维交接"
+        tasks:
+          - "生产环境组件同构部署与网络策略最终放行"
+          - "全量历史数据一次性对账核对与增量同步追平"
+          - "上线投产、团队运维赋能培训与平稳技术交接"
+        exit_criteria: "生产环境稳定运行 72 小时无 P0/P1 告警，平稳进入维保"
+        is_critical: false
