@@ -29,9 +29,35 @@
 3. **针对性编写 Python 绘图代码**：
    - 对特定主题定制专属的 Python 生成脚本，精确计算每个组件的坐标、边距和尺寸，确保每一个像素与字号都经过计算。
 
+## 2. 视觉创意与高级感设计法则 (Visual Creativity & Aesthetics Rules)
+
+高端咨询与云架构提案绝不是“枯燥的单色框图”，必须具备现代极简与极具表现力的**视觉创意 (Visual Creativity)**：
+
+### 2.1 品牌色与多层次色彩系统 (Rich Thematic Color Palette)
+- **主调与暗底冲击**：
+  - 封面页采用 Deep Slate Navy (`#0A192F`)，配合 Azure Blue (`#0078D4`) 形成强烈科技感对比与尊享感。
+- **产品原生色标体系 (Branded Accents)**：
+  - **Azure Data Factory**：深紫/蓝靛 (`#5C2D91`)，浅底 (`#F5F0FF`)，传递“管道与编排纽带”特性。
+  - **Azure Databricks**：烈焰橙红 (`#EA3824`)，浅底 (`#FEF2F2`)，凸显“Medallion 湖仓计算核心”地位。
+  - **Azure Synapse**：蓝绿/青色 (`#008272`)，浅底 (`#F0FDFA`)，展现“企业级数仓与报表分析”稳健。
+- **Medallion 湖仓金银铜质感阶梯**：
+  - **Bronze Layer**：古铜琥珀 (`#B45309`)
+  - **Silver Layer**：质感冷银 (`#475569`)
+  - **Gold Layer**：黄金琥珀 (`#D97706`)
+
+### 2.2 视觉容器结构创新 (Structural Creative Components)
+1. **封面双分视觉架构卡 (Split Composition Hero Card)**：
+   - 左侧 60% 主标题排版与咨询元数据，右侧 35% 绘制深色磨砂质感的“三驾马车蓝图缩略卡”，在封面第一眼就传达架构全貌。
+2. **彩色顶条与标签徽章 (Top Accent Bars & Tag Pills)**：
+   - 每张核心卡片顶部增加 0.05 英寸的产品专属色彩条，内嵌 `【👑 核心湖仓底座】`、`【全域调度接入纽带】` 等视觉胶囊标签。
+3. **真实协议连接带 (Protocol Strips)**：
+   - 层与层之间不再留白或画容易错位的交叉细线，而是使用居中的等宽协议条，例如 `── ↕ ABFS (ADLS Gen2) · Delta Lake 开放格式 · Apache Spark 3.x ──`，既具技术真实感又规范美观。
+4. **定量收益大数卡 (Metric Badges)**：
+   - 提取业务高光指标（如 `⚡ 15 分钟`、`💰 -35%`、`📉 -70%`），大号衬线数字配合紧凑解说，瞬间抓住高层管理者的注意力。
+
 ---
 
-## 2. 零重叠排版几何法则 (Zero-Overlap Geometry Rules)
+## 3. 零重叠排版几何法则 (Zero-Overlap Geometry Rules)
 
 幻灯片重叠的根本原因在于**硬编码了绝对坐标而没有做垂直/水平累加**。必须严格遵循以下几何分区与坐标系：
 
@@ -60,7 +86,7 @@
 
 ---
 
-## 3. 架构图专业绘制指南 (How to "Draw an Architecture" in Python)
+## 4. 架构图专业绘制指南 (How to "Draw an Architecture" in Python)
 
 当用户提出“画一个架构图”时，一个专业的咨询级架构幻灯片必须包含以下 5 大要素（参考 `China RIMS Solution Proposal` Slide 27 & 37）：
 
@@ -78,7 +104,7 @@
 
 ---
 
-## 4. 选型对比矩阵绘制指南 (How to Draw a Comparison Matrix)
+## 5. 选型对比矩阵绘制指南 (How to Draw a Comparison Matrix)
 
 当用户需要评估对比技术栈（如 ADF vs Databricks vs Synapse）时：
 1. **维度明确**：横轴为候选方案，纵轴为业务核心维度（数据接入、清洗转换、湖仓一体、并发报表、AI高级分析）。
@@ -91,7 +117,7 @@
 
 ---
 
-## 5. 智能体重新生成 PPT 的具体执行步骤 (Action SOP)
+## 6. 智能体重新生成 PPT 的具体执行步骤 (Action SOP)
 
 遇到 PPT 生成或重构需求时，请按顺序执行：
 1. **规划内容与页面结构**：在脑海或草稿中列出各页的大纲与核心论点。
