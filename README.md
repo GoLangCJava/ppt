@@ -167,14 +167,26 @@ prs.save("custom_output.pptx")
 
 ---
 
-## 📁 目录结构
+## 📁 目录结构与规范文档库
+
+### 📚 核心设计规范与方法论文档 (Methodology & Standards)
+- **`how-to-design-better-consulting-ppt.md`**：【核心推荐】**如何将咨询与技术 PPT 设计得更好看**——从“死板土味方框”到“顶级咨询视觉艺术”进阶指南（包含 9 大立竿见影美化秘诀与 Python 实战代码）。
+- **`consulting-ppt-visual-chart-standards.md`**：咨询级 PPT 视觉图表与版式规范标准（60-30-10 配色法则、字号字重梯度、微圆角与边框标准、Harvey Balls、大数收益徽章）。
+- **`mckinsey-structured-communication-guide.md`**：麦肯锡结构化沟通与金字塔原理指南（BLUF 原则、SCQA 叙事模型、MECE 分类法则、Action Title 公式）。
+- **`automated-ppt-script-agent-sop.md`**：自动化 PPT 脚本智能体标准化作业程序（16:9 宽屏绝对隔离带、单 TextFrame 流式排版、自动化零碰撞检测门禁）。
+- **`agent.md`**：AI Agent 咨询级 PPT 生成 SOP 与操作手册。
 
 ```
 ppt/
 ├── SKILL.md                          # 供智能体 (Claude Code / Agent) 调用的标准化 Skill
 ├── README.md                         # 项目完整文档
-├── pyproject.toml                    # Python 打包与依赖配置
-├── requirements.txt                  # 依赖清单 (python-pptx, pydantic, pyyaml 等)
+├── agent.md                          # 智能体生成 SOP 与最佳实践
+├── how-to-design-better-consulting-ppt.md # 视觉美化进阶指南 (如何设计得更好看)
+├── consulting-ppt-visual-chart-standards.md # 咨询图表视觉规范
+├── mckinsey-structured-communication-guide.md # 麦肯锡结构化沟通指南
+├── automated-ppt-script-agent-sop.md # 自动化脚本智能体 SOP
+├── generate_azure_architecture_deck.py # 专属定制 Azure 架构 PPT 生成脚本
+├── Azure_Databricks_ADF_Synapse_Architecture.pptx # 原生矢量高颜值演示文稿成品
 ├── China RIMS Solution Proposal_V1.0_20260902.pptx # 48页黄金参考提案 (参考基准)
 ├── ppt/                              # Python 核心包
 │   ├── config/                       # 主题色彩系统 (咨询蓝, 行政暗色, 经典海军蓝)
