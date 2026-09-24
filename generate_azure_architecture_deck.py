@@ -4,6 +4,8 @@ Custom Executive Presentation Generator: Azure Databricks & ADF & Synapse Archit
 High-Creativity, Modern Consulting Layout with Zero Overlaps & Precise Geometry.
 """
 
+import sys
+sys.path.insert(0, '/home/user/ppt_deps')
 from pathlib import Path
 from pptx import Presentation
 from pptx.util import Inches, Pt
